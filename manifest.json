@@ -55,6 +55,7 @@
             "urlCheck" : false,
 			"checkSiteMap":false
         },
+		"optimization":{"subPackages":true},
         "usingComponents" : true
     },
     "vueVersion" : "2"
