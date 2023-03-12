@@ -89,7 +89,7 @@
 					})
 				})
 				this.floorList = res.message;
-				console.log(this.floorList);
+				/* console.log(this.floorList); */
 			},
 			gonavDetail(item) {
 				if (item.name === '分类') {
