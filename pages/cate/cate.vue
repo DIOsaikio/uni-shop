@@ -1,5 +1,8 @@
 <template>
 	<view class="cate">
+		<!-- 搜索组件 -->
+		<my-search @click="goSearch"></my-search>
+		<!-- 滑动区 -->
 		<view class="scroll-container">
 			<!-- 左侧滚动栏 -->
 			<scroll-view scroll-y="true" :style="{height:windowheight+'px'}" class="scroll-left">
@@ -48,7 +51,7 @@
 		},
 		onLoad() {
 			const info = uni.getSystemInfoSync();
-			this.windowheight = info.windowHeight;
+			this.windowheight = info.windowHeight-50;
 			/* console.log(this.windowheight); */
 			this.getcateList();
 		},
@@ -74,6 +77,12 @@
 			gotoGoodslist(item){
 				uni.navigateTo({
 					url:`/subpkg/goods_list/goods_list?cid=${item.cat_id}`,
+				})
+			},
+			goSearch(){
+				console.log(222);
+				uni.navigateTo({
+					url:"/subpkg/search/search"
 				})
 			}
 		}

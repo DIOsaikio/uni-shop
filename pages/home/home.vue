@@ -1,6 +1,11 @@
 <template>
-	<view>
-		<!-- 轮播图区 -->
+	
+	<view class="home">
+		<!-- 搜索组件 -->
+		<view class="search-box">
+			<my-search @click="goSearch" ></my-search>
+		</view>
+<!-- 		轮播图区 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in swiperList" :key="item.goods_id">
 				<navigator class="swiper-item" :url="'/subpkg/goods_detail/goods_detail?goods_id='+ item.goods_id">
@@ -97,54 +102,66 @@
 						url: "/pages/cate/cate"
 					})
 				}
+			},
+			goSearch(){
+				uni.navigateTo({
+					url:"/subpkg/search/search"
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	swiper {
-		height: 330rpx;
-
-		.swiper-item {
-			image {
-				width: 100%;
+	.home{
+		swiper {
+			height: 330rpx;
+			.swiper-item {
+				image {
+					width: 100%;
+				}
 			}
 		}
-	}
-
-	.nav-List {
-		display: flex;
-		justify-content: space-around;
-		margin: 30rpx 0;
-
-		.nav-item {
-			.nav-img {
-				width: 128rpx;
-				height: 140rpx;
-			}
-		}
-	}
-
-	.floor-List {
-		.floor-title {
-			width: 100%;
-			height: 60rpx;
-		}
-
-		.floor-imagebox {
+		
+		.nav-List {
 			display: flex;
-
-			.imagebox-left {
-				padding-left: 10rpx;
-			}
-
-			.imagebox-right {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-around;
+			justify-content: space-around;
+			margin: 30rpx 0;
+		
+			.nav-item {
+				.nav-img {
+					width: 128rpx;
+					height: 140rpx;
+				}
 			}
 		}
-
+		
+		.floor-List {
+			.floor-title {
+				width: 100%;
+				height: 60rpx;
+			}
+		
+			.floor-imagebox {
+				display: flex;
+		
+				.imagebox-left {
+					padding-left: 10rpx;
+				}
+		
+				.imagebox-right {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: space-around;
+				}
+			}
+		
+		}
+		.search-box{
+			position: sticky;
+			top: 0;
+			z-index: 999;
+		}
 	}
+	
 </style>
