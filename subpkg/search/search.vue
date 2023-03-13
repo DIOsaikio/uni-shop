@@ -144,8 +144,8 @@
 			.history-list {
 				display: flex;
 				flex-wrap: wrap;
-
-				uni-text {
+				padding: 0 10rpx;
+				text {
 					display: block;
 					margin-top: 10rpx;
 					margin-right: 10rpx;
