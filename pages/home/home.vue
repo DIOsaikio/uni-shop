@@ -1,11 +1,11 @@
 <template>
-	
+
 	<view class="home">
 		<!-- 搜索组件 -->
 		<view class="search-box">
-			<my-search @click="goSearch" ></my-search>
+			<my-search @click="goSearch"></my-search>
 		</view>
-<!-- 		轮播图区 -->
+		<!-- 		轮播图区 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in swiperList" :key="item.goods_id">
 				<navigator class="swiper-item" :url="'/subpkg/goods_detail/goods_detail?goods_id='+ item.goods_id">
@@ -29,11 +29,11 @@
 							:style="{width:item.product_list[0].image_width+'rpx'}" mode="widthFix"></image>
 					</navigator>
 					<view class="imagebox-right">
-						<view class="imageitem-right" v-for="(picitem,index) in item.product_list" :key="index"
-							v-if="!index==0">
+						<navigator class="imageitem-right" v-for="(picitem,index) in item.product_list" :key="index"
+							v-if="!index==0" :url="picitem.navigator_url">
 							<image :src="picitem.image_src" :style="{width:picitem.image_width+'rpx'}" mode="widthFix">
 							</image>
-						</view>
+						</navigator>
 					</view>
 				</view>
 			</view>
@@ -88,9 +88,10 @@
 				if (res.meta.status !== 200) {
 					return uni.$showMsg();
 				}
-				res.message.forEach((item)=>{
-					item.product_list.forEach(prop=>{
-						prop.navigator_url=prop.navigator_url.replace(/\pages/gi,'subpkg/goods_list');
+				res.message.forEach((item) => {
+					item.product_list.forEach(prop => {
+						prop.navigator_url = prop.navigator_url.replace(/\pages/gi,
+							'subpkg/goods_list');
 					})
 				})
 				this.floorList = res.message;
@@ -103,31 +104,38 @@
 					})
 				}
 			},
-			goSearch(){
+			goSearch() {
 				uni.navigateTo({
-					url:"/subpkg/search/search"
+					url: "/subpkg/search/search"
 				})
-			}
+			},
+		/* 	goGoodslist(picitem) {
+				console.log(picitem);
+				uni.navigateTo({
+					url: `/subpkg/goods_list/goods_list?query=${picitem.name}`
+				})
+			} */
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.home{
+	.home {
 		swiper {
 			height: 330rpx;
+
 			.swiper-item {
 				image {
 					width: 100%;
 				}
 			}
 		}
-		
+
 		.nav-List {
 			display: flex;
 			justify-content: space-around;
 			margin: 30rpx 0;
-		
+
 			.nav-item {
 				.nav-img {
 					width: 128rpx;
@@ -135,33 +143,33 @@
 				}
 			}
 		}
-		
+
 		.floor-List {
 			.floor-title {
 				width: 100%;
 				height: 60rpx;
 			}
-		
+
 			.floor-imagebox {
 				display: flex;
-		
+
 				.imagebox-left {
 					padding-left: 10rpx;
 				}
-		
+
 				.imagebox-right {
 					display: flex;
 					flex-wrap: wrap;
 					justify-content: space-around;
 				}
 			}
-		
+
 		}
-		.search-box{
+
+		.search-box {
 			position: sticky;
 			top: 0;
 			z-index: 999;
 		}
 	}
-	
 </style>
