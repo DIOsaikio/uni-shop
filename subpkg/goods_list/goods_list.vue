@@ -29,7 +29,7 @@
 		onLoad(option) {
 			this.queryobj.query = option.query || '';
 			this.queryobj.cid = option.cid || '';
-			console.log(this.queryobj);
+			/* console.log(this.queryobj); */
 			this.getgoodsList();
 		},
 		methods: {
@@ -45,7 +45,7 @@
 				}
 				this.goodsList = [...this.goodsList, ...res.message.goods];
 				this.total = res.message.total;
-				console.log(this.total);
+				/* console.log(this.total); */
 				
 			},
 			goDetail(goods){
