@@ -1,4 +1,4 @@
-
+import store from '@/store/store.js'
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
@@ -13,7 +13,8 @@ uni.$showMsg=function(title='数据请求失败',duration=1500){
 }
 App.mpType = 'app'
 const app = new Vue({
-    ...App
+    ...App,
+	store
 })
 app.$mount()
 // #endif
